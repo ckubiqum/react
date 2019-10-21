@@ -1,0 +1,26 @@
+.Header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: rgb(62, 76, 82);
+    font-size: 25px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding-bottom: 15px;
+    overflow: hidden;
+    height: 50px;
+
+}
+
+
+p {
+    margin-top: 0px !important;
+    color: white;
+    font-weight: 700;
+}
+
+.Header a {
+    color: #FFFFFF;
+    text-decoration: none;
+}
