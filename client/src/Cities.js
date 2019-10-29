@@ -45,7 +45,7 @@ class Cities extends React.Component {
     }
 
     render() {
-        let filteredCities = this.state.cities.filter(city => city.city.toUpperCase().includes(this.state.result.toUpperCase()) || city.country.toUpperCase().includes(this.state.result.toUpperCase()));
+        let filteredCities = this.state.cities.filter(city => city.city.toUpperCase().startsWith(this.state.result.toUpperCase()) || city.country.toUpperCase().startsWith(this.state.result.toUpperCase()));
 
 
         const { error, isLoaded, cities } = this.state;
