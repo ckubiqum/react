@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './Header.css';
 import { Link } from 'react-router-dom';
 
@@ -6,10 +6,10 @@ function Header() {
     return (
         <div className="Header">
             <Link to="/">
-                <p>Home</p>
+                <p className="navigation">Home</p>
             </Link>
             <Link to="/staff">
-                <p>Our staff</p>
+                <p className="navigation">Our staff</p>
             </Link>
         </div>
     )

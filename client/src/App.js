@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Staff from './Staff.js';
+import Cities from './Cities.js';
 import Landing from './Landing.js';
 import Sabrina from './assets/Sabrina.png';
 import Martin from './assets/Martin.png';
@@ -28,6 +29,7 @@ class App extends Component {
 
           <Route exact path='/' component={Landing} />
           <Route path='/staff'> <Staff staff={this.state.staff} /> </Route>
+          <Route path='/cities'> <Cities /> </Route>
         </Switch>
       </BrowserRouter>
     )

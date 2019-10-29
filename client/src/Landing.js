@@ -14,7 +14,7 @@ function Landing() {
             <p>Find your perfect trip, designed by insiders who know and love their cities.</p>
 
             <h1>Start browsing</h1>
-            <Link to="/staff">
+            <Link to="/cities">
                 <img src={arrow} className="Landing-arrow" alt="arrow" />
             </Link>
             <p>Want to design your own MYtinerary?</p>
