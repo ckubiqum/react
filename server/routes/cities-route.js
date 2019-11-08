@@ -14,17 +14,5 @@ router.get('/all',
             })
             .catch(err => console.log(err));
     });
-router.post('/addCity', (req, res) => {
-    const newCity = new cityModel({
-        city: req.body.city,
-        country: req.body.country
-    })
-    newCity.save()
-        .then(city => {
-            res.send(city)
-        })
-        .catch(err => {
-            res.status(500).send("Server error")
-        })
-});
+
 module.exports = router;

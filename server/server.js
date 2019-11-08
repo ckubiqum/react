@@ -1,5 +1,7 @@
 const express = require('express');
-const cityRouter = require('./routes/cities-route')
+const cityRouter = require('./routes/cities-route');
+const itineraryRouter = require('./routes/itinerary-route');
+const activityRouter = require('./routes/activity-route');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const app = express();
@@ -13,6 +15,8 @@ mongoose.connect(db, { useNewUrlParser: true, useCreateIndex: true })
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/cities-route', cityRouter);
+app.use('/itinerary-route', itineraryRouter);
+app.use('/activity-route', activityRouter);
 
 app.get('/api/hello', (req, res) => {
     res.send({ express: 'Hello From Express' });

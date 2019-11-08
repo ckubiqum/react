@@ -1,5 +1,9 @@
 import React from 'react';
 import './Cities.css';
+import { connect } from 'react-redux';
+import { fetchCities } from './store/actions/cityAction';
+import { Link } from 'react-router-dom';
+
 
 class Cities extends React.Component {
     constructor(props) {
@@ -12,23 +16,27 @@ class Cities extends React.Component {
         };
     }
 
-    componentDidMount() {
-        fetch("/cities-route/all")
-            .then(res => res.json())
-            .then(result => {
-                console.log(result);
 
-                this.setState({
-                    isLoaded: true,
-                    cities: result
-                });
-            })
-            .catch(error => {
-                this.setState({
-                    isLoaded: true,
-                    error
-                });
-            })
+
+    componentDidMount() {
+        // fetch("/cities-route/all")
+        //     .then(res => res.json())
+        //     .then(result => {
+        //         console.log(result);
+
+        //         this.setState({
+        //             isLoaded: true,
+        //             cities: result
+        //         });
+        //     })
+        //     .catch(error => {
+        //         this.setState({
+        //             isLoaded: true,
+        //             error
+        //         });
+        //     })
+
+        this.props.fetchCities();
     }
 
     onChangeHandler = (e) => {
@@ -39,19 +47,18 @@ class Cities extends React.Component {
         console.log(e.target.value);
         // let filteredCities = this.state.cities.includes(this.state.result);
 
-
-
-
     }
 
     render() {
-        let filteredCities = this.state.cities.filter(city => city.city.toUpperCase().startsWith(this.state.result.toUpperCase()) || city.country.toUpperCase().startsWith(this.state.result.toUpperCase()));
+        console.log(this.props.cities);
+
+        let filteredCities = this.props.cities.filter(city => city.city.toUpperCase().startsWith(this.state.result.toUpperCase()) || city.country.toUpperCase().startsWith(this.state.result.toUpperCase()));
 
 
-        const { error, isLoaded, cities } = this.state;
+        const { error } = this.state;
         if (error) {
             return <div>Error: {error.message}</div>;
-        } else if (!isLoaded) {
+        } else if (filteredCities.length === 0) {
             return <div>Loading...</div>;
         } else {
             return (
@@ -62,16 +69,21 @@ class Cities extends React.Component {
                         <p>Busca una ciudad:</p><input type="text" onChange={this.onChangeHandler} placeholder="Buscar..."></input>
                     </div>
                     <h1> All cities </h1>
-                    {console.log(this.state)}
+
 
                     {filteredCities.map(city => (
-                        <p key={city._id}>
-                            {city.city} - {city.country}
-                        </p>
-                    ))}
+                        <Link to={"/itineraries/" + city._id}>
+                            <p key={city._id}>
+                                {city.city} - {city.country}
+                            </p>
+                        </Link>))}
                 </div>
             );
         }
     }
 }
-export default Cities
+const mapStateToProps = state => ({
+    cities: state.cities.cities
+});
+
+export default connect(mapStateToProps, { fetchCities })(Cities)
