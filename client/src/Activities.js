@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchActivities } from './store/actions/activityAction';
+// import { image } from "./assets/'+' {activity.image}";
 
 
 class Activities extends React.Component {
@@ -24,11 +25,11 @@ class Activities extends React.Component {
 
     componentDidMount() {
         console.log("props: ", this.props)
-        this.props.fetchActivities(this.props.match.params.itineraryId);
+        this.props.fetchActivities(this.props.itiId);
     }
 
     render() {
-        console.log(this.props.activities);
+        console.log(this.props.itiId);
 
         const { error, activities } = this.state;
         if (error) {
@@ -40,12 +41,11 @@ class Activities extends React.Component {
 
                 <div className="activity-list">
 
-                    <h1> All activities </h1>
-
 
                     {activities.map(activity => (
                         <p key={activity._id}>
-                            {activity.name} - {activity.cityName}
+                            {/* <img src={image} className="activity-image" alt="activity" /><br></br> */}
+                            {activity.name} - {activity.cost}
                         </p>
                     ))}
                 </div>

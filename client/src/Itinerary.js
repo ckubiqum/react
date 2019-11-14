@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchItineraries } from './store/actions/itineraryAction';
-import { Link } from 'react-router-dom';
-
+import Activities from './Activities.js';
+import './Cities.css';
 
 class Itineraries extends React.Component {
     constructor(props) {
@@ -11,6 +11,7 @@ class Itineraries extends React.Component {
             error: null,
             isLoaded: false,
             itineraries: [],
+            selectedId: ""
 
         };
     }
@@ -27,8 +28,15 @@ class Itineraries extends React.Component {
         this.props.fetchItineraries(this.props.match.params.cityId);
     }
 
+    myFunction = (newId) => {
+        this.setState({
+            selectedId: newId
+
+        })
+    }
+
     render() {
-        console.log(this.props.itineraries);
+        console.log(this.props);
 
         const { error, itineraries } = this.state;
         if (error) {
@@ -40,16 +48,34 @@ class Itineraries extends React.Component {
 
                 <div className="itinerary-list">
 
-                    <h1> All itineraries </h1>
+
 
 
                     {itineraries.map(itinerary => (
-                        <Link to={"/activities/" + itinerary._id}>
-                            <p key={itinerary._id}>
-                                {itinerary.name} - {itinerary.cityName}
-                            </p>
-                        </Link>))}
-                </div>
+
+                        <div className="accordion" id="accordionExample">
+                            <div className="card">
+                                <div className="card-header" id="headingOne">
+                                    <h5 className="mb-0">
+                                        <button className="btn btn-link" type="button" data-toggle="collapse" data-target={"#" + itinerary._id} aria-expanded="true" aria-controls={itinerary._id}>
+
+
+                                            <p onClick={() => this.myFunction(itinerary._id)}>
+                                                {itinerary.name} - {itinerary.cityName}
+                                            </p>      </button>
+                                    </h5>
+                                </div>
+
+                                <div id={itinerary._id} className="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                    <div className="card-body">
+                                        {this.state.selectedId === itinerary._id ? <Activities itiId={itinerary._id} /> : ""}
+
+                                    </div>
+                                </div></div></div>
+
+                    ))}</div>
+
+
             );
         }
     }

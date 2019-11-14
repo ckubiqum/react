@@ -11,6 +11,13 @@ function Header() {
             <Link to="/staff">
                 <p className="navigation">Our staff</p>
             </Link>
+            <Link to="/cities">
+                <p className="navigation">Cities</p>
+            </Link>
+            <Link to="/login">
+                <p className="navigation">Login</p>
+            </Link>
+
         </div>
     )
 }

@@ -2,14 +2,14 @@
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    background-color: rgb(62, 76, 82);
-    font-size: 25px;
+    background-color: rgba(34, 193, 195, 1);
+    font-size: 20px;
     position: fixed;
     top: 0;
     width: 100%;
     padding-bottom: 15px;
     overflow: hidden;
-    height: 50px;
+    height: 70px;
 
 }
 
@@ -17,7 +17,7 @@
 .navigation {
     margin-top: 0px !important;
     color: white;
-    font-weight: 700;
+    font-weight: 500;
 }
 
 .Header a {

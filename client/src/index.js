@@ -8,6 +8,8 @@ import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
 import rootReducer from "./store/reducers/rootReducer";
+import { Router, Route, Link } from 'react-router-dom';
+import history from './history';
 
 //ReactDOM.render(<App />, document.getElementById('root'));
 
@@ -21,7 +23,9 @@ const store = createStore(
 );
 ReactDOM.render(
     <Provider store={store}>
-        <App />
+        <Router history={history}>
+            <App />
+        </Router>
     </Provider>,
     document.getElementById("root")
 );

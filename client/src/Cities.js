@@ -17,7 +17,6 @@ class Cities extends React.Component {
     }
 
 
-
     componentDidMount() {
         // fetch("/cities-route/all")
         //     .then(res => res.json())
@@ -45,7 +44,6 @@ class Cities extends React.Component {
         });
         console.log(this.state.cities);
         console.log(e.target.value);
-        // let filteredCities = this.state.cities.includes(this.state.result);
 
     }
 
@@ -72,8 +70,8 @@ class Cities extends React.Component {
 
 
                     {filteredCities.map(city => (
-                        <Link to={"/itineraries/" + city._id}>
-                            <p key={city._id}>
+                        <Link key={city._id} to={"/itineraries/" + city._id}>
+                            <p>
                                 {city.city} - {city.country}
                             </p>
                         </Link>))}
@@ -85,5 +83,19 @@ class Cities extends React.Component {
 const mapStateToProps = state => ({
     cities: state.cities.cities
 });
+
+// router.post('/', (req, res) => {
+//     const newCity = new cityModel({
+//         city: req.body.city,
+//         country: req.body.country
+//     })
+//     newCity.save()
+//         .then(city => {
+//             res.send(city)
+//         })
+//         .catch(err => {
+//             res.status(500).send("Server error")
+//         })
+// });
 
 export default connect(mapStateToProps, { fetchCities })(Cities)

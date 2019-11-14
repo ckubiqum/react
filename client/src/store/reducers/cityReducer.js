@@ -9,6 +9,12 @@ export default function (state = initialState, action) {
                 ...state,
                 cities: action.payload,
             }
+
+        case "ADD_CITIES":
+            return {
+                ...state,
+                cities: [...state.cities, ...action.payload],
+            }
         default:
             return state;
     }
